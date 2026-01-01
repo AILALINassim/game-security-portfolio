@@ -1,0 +1,36 @@
+# Anti-tamper configuration file
+# This file defines runtime checks and response behavior.
+
+# Path to the protected binary.
+# In a real scenario, this would typically be the game executable or a critical DLL.
+target_path: ".\\fake_game.bin"
+
+# Expected SHA-256 hash of the protected file.
+# If left empty, the current hash is computed at startup and used as reference.
+expected_sha256: ""
+
+# Interval (in seconds) between integrity and process checks.
+scan_interval_sec: 1.0
+
+# Action to take when a violation is detected:
+# - "exit": terminate the monitoring process (simulates game shutdown)
+# - "log_only": log the event but continue execution
+action: "exit"
+
+# Directory where structured logs are written.
+log_dir: "sample_logs"
+
+# Enable basic anti-debugging check (Windows only).
+enable_debugger_check: true
+
+# List of forbidden tools or process name fragments.
+# Matching is performed against process name, executable path and command line.
+forbidden_processes:
+  - cheatengine
+  - x64dbg
+  - x32dbg
+  - ida
+  - ida64
+  - ghidra
+  - ollydbg
+  - windbg
